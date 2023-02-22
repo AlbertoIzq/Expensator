@@ -1,0 +1,2 @@
+# Expensator
+Expenses management app
