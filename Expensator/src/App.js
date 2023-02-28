@@ -1,7 +1,10 @@
+import ExpenseItem from "./components/ExpenseItem";
+
 function App() {
   return (
     <div>
-      <h2>Expensator</h2>
+      <h1>Expensator</h1>
+      <ExpenseItem />
     </div>
   );
 }
