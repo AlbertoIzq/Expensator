@@ -1,10 +1,12 @@
 import './ExpenseItem.css'
 
-export default function ExpenseItem(props) {  
+import ExpenseDate from './ExpenseDate';
+
+export default function ExpenseItem(props) {
   return (
     <div className="expense-item">
       <div className="expense-item__date">
-        <h2>{props.date.toDateString()}</h2>
+        <ExpenseDate date={props.date} />
       </div>
         <div className="expense-item__icon">
           <p>{props.icon}</p>
