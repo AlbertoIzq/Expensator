@@ -3,6 +3,7 @@ import Expenses from "./components/Expenses";
 function App() {
   const expenses = [
     {
+      id: 1,
       date: new Date(2022, 12, 14),
       icon: "Food",
       description:"Bread",
@@ -12,6 +13,7 @@ function App() {
       priceOther: 165.00
     },
     {
+      id: 2,
       date: new Date(2022, 12, 13),
       icon: "Train",
       description:"Airport link",
@@ -21,6 +23,7 @@ function App() {
       priceOther: 40.00 
     },
     {
+      id: 3,
       date: new Date(2022, 12, 13),
       icon: "Train",
       description:"Grab",
