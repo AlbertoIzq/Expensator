@@ -1,6 +1,6 @@
-import Expenses from "./components/Expenses";
+import Expenses from "./components/Expenses/Expenses";
 
-function App() {
+const App = () => {
   const expenses = [
     {
       id: 1,
@@ -40,6 +40,17 @@ function App() {
       <Expenses expenses={expenses} />
     </div>
   );
+
+  /*
+  return (
+    React.createElement(
+    'div', {}, 
+      React.createElement('h1', {}, "Expensator"),
+      React.createElement(Expenses, {expenses: expenses})
+    )
+  );
+  */
 }
 
 export default App;
+

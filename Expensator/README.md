@@ -1,3 +1,24 @@
+# ReadMe
+
+## Future improvements
+
+### Add language translation functionality
+Use i18n
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
