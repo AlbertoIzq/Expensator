@@ -34,11 +34,15 @@ const App = () => {
       priceOther: 65.00
     }
   ]
+
+  const addExpenseHandler = newExpense => {
+    console.log('In App.js');
+  }
   
   return (
     <div>
       <h1>Expensator</h1>
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses expenses={expenses} />
     </div>
   );
