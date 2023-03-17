@@ -6,7 +6,7 @@ import NewExpense from './components/NewExpense/NewExpense';
 const DUMMY_EXPENSES = [
   {
     id: 1,
-    date: new Date(2022, 12, 14),
+    date: new Date("2022-10-14"), 
     icon: "Food",
     description:"Bread",
     type: "Groceries",
@@ -16,7 +16,7 @@ const DUMMY_EXPENSES = [
   },
   {
     id: 2,
-    date: new Date(2022, 12, 13),
+    date: new Date("2022-12-14"), 
     icon: "Train",
     description:"Airport link",
     type: "Transport",
@@ -26,9 +26,19 @@ const DUMMY_EXPENSES = [
   },
   {
     id: 3,
-    date: new Date(2022, 12, 13),
+    date: new Date("2021-04-24"), 
     icon: "Train",
     description:"Grab",
+    type: "Transport",
+    priceEuros: 1.77,
+    currency: "THB",
+    priceOther: 65.00
+  },
+  {
+    id: 4,
+    date: new Date("2020-02-26"), 
+    icon: "Train",
+    description:"Ticket",
     type: "Transport",
     priceEuros: 1.77,
     currency: "THB",
