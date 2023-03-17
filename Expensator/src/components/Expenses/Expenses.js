@@ -17,19 +17,17 @@ export default function Expenses(props) {
         <Card className="expenses">
           <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
           {
-            props.expenses.map((expense, index) => (
-              <div key={index}>
-                <ExpenseItem
-                  id={expense.id}
-                  date={expense.date}
-                  icon={expense.icon}
-                  description={expense.description}
-                  type={expense.type}
-                  priceEuros={expense.priceEuros}
-                  currency={expense.currency}
-                  priceOther={expense.priceOther}
-                />
-              </div>
+            props.expenses.map((expense) => (
+              <ExpenseItem key={expense.id}
+                id={expense.id}
+                date={expense.date}
+                icon={expense.icon}
+                description={expense.description}
+                type={expense.type}
+                priceEuros={expense.priceEuros}
+                currency={expense.currency}
+                priceOther={expense.priceOther}
+              />
             ))
           }
         </Card>
