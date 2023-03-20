@@ -15,23 +15,26 @@ export default function Expenses(props) {
 
   const expensesFiltered = props.expenses.filter(expense => expense.date.getFullYear().toString() === filteredYear);
 
+  let expensesContent = <p>No expenses found</p>;
+  if(expensesFiltered.length > 0) {
+    expensesContent =  expensesFiltered.map((expense) => (
+      <ExpenseItem key={expense.id}
+      id={expense.id}
+      date={expense.date}
+      icon={expense.icon}
+      description={expense.description}
+      type={expense.type}
+      priceEuros={expense.priceEuros}
+      currency={expense.currency}
+      priceOther={expense.priceOther}
+      />
+    ));
+  }
+
     return (
         <Card className="expenses">
           <ExpensesFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-          {
-            expensesFiltered.map((expense) => (
-              <ExpenseItem key={expense.id}
-                id={expense.id}
-                date={expense.date}
-                icon={expense.icon}
-                description={expense.description}
-                type={expense.type}
-                priceEuros={expense.priceEuros}
-                currency={expense.currency}
-                priceOther={expense.priceOther}
-              />
-            ))
-          }
+          {expensesContent}
         </Card>
     );
 }
