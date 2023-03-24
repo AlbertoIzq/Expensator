@@ -34,6 +34,15 @@ const ExpenseForm = (props) => {
         setEnteredPriceOther(event.target.value);
     }
 
+    const reinitializeForm = () => {
+        setEnteredDate("");
+        setEnteredDescription("");
+        setEnteredType("");
+        setEnteredPriceEuros("");
+        setEnteredCurrency("");
+        setEnteredPriceOther("");
+    }
+
     const submitHandler = (event) => {
         event.preventDefault();
 
@@ -50,16 +59,18 @@ const ExpenseForm = (props) => {
         props.onSaveExpenseData(enteredExpense);
 
         // Reinitialize form
-        setEnteredDate("");
-        setEnteredDescription("");
-        setEnteredType("");
-        setEnteredPriceEuros("");
-        setEnteredCurrency("");
-        setEnteredPriceOther("");
+        reinitializeForm();
+    }
+
+    const resetHandler = (event) => {
+        event.preventDefault();
+
+        // Reinitialize form
+        reinitializeForm();
     }
 
     return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} onReset={resetHandler}>
         <div className="new-expense__controls">
              <div className="new-expense__control">
                 <label>Date</label>
@@ -100,6 +111,7 @@ const ExpenseForm = (props) => {
             
         </div>
         <div className="new-expense__actions">
+            <button type='reset'>Reset</button>
             <button type='submit'>Add Expense</button>
         </div>
     </form>
