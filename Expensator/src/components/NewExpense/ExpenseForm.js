@@ -9,7 +9,9 @@ const ExpenseForm = (props) => {
     const [enteredPriceEuros, setEnteredPriceEuros] = useState("");
     const [enteredCurrency, setEnteredCurrency] = useState("");
     const [enteredPriceOther, setEnteredPriceOther] = useState("");
-    
+
+    const [showFormContent, setShowFormContent] = useState(false)
+
     const dateChangeHandler = (event) => {
         setEnteredDate(event.target.value);
     }
@@ -60,6 +62,9 @@ const ExpenseForm = (props) => {
 
         // Reinitialize form
         reinitializeForm();
+
+        // Hide form
+        setShowFormContent(false);
     }
 
     const resetHandler = (event) => {
@@ -69,51 +74,76 @@ const ExpenseForm = (props) => {
         reinitializeForm();
     }
 
+    const clickCancelHandler = () => {
+        setShowFormContent(false);
+    }
+
+    const clickSubmitHandler = () => {
+        if(!showFormContent) {
+            setShowFormContent(true);
+        }
+    }
+
+    let formContent = (
+        <div>
+            <div className="new-expense__controls">
+                <div className="new-expense__control">
+                    <label>Date</label>
+                    <input type='date' min="2019-01-01" step="2023-12-31"
+                    value={enteredDate}
+                    onChange={dateChangeHandler}/>
+                </div>
+                <div className="new-expense__control">
+                    <label>Description</label>
+                    <input type='text'
+                    value={enteredDescription}
+                    onChange={descriptionChangeHandler}/>
+                </div>
+                <div className="new-expense__control">
+                    <label>Type</label>
+                    <input type='text'
+                    value={enteredType}
+                    onChange={typeChangeHandler}/>
+                </div>
+                <div className="new-expense__control">
+                    <label>Price in €</label>
+                    <input type='number' min="0.01" step="0.01"
+                    value={enteredPriceEuros}
+                    onChange={priceEurosChangeHandler}/>
+                </div>
+                <div className="new-expense__control">
+                    <label>Other currency</label>
+                    <input type='text'
+                    value={enteredCurrency}
+                    onChange={currencyChangeHandler}/>
+                </div>
+                <div className="new-expense__control">
+                    <label>Price other currency</label>
+                    <input type='number' min="0.01" step="0.01"
+                    value={enteredPriceOther}
+                    onChange={priceOtherChangeHandler}/>
+                </div>
+                
+            </div>
+            <div className="new-expense__actions">
+                <button type='button' onClick={clickCancelHandler}>Cancel</button>
+                <button type='submit' onClick={clickSubmitHandler}>Add Expense</button>
+                <button type='reset'>Reset</button>
+            </div>
+        </div>
+    );
+
+    if(!showFormContent) {
+        formContent = (
+            <div className="new-expense__actions">
+                <button type='submit' onClick={clickSubmitHandler}>Add Expense</button>
+            </div>
+        )
+    }
+
     return (
     <form onSubmit={submitHandler} onReset={resetHandler}>
-        <div className="new-expense__controls">
-             <div className="new-expense__control">
-                <label>Date</label>
-                <input type='date' min="2019-01-01" step="2023-12-31"
-                value={enteredDate}
-                onChange={dateChangeHandler}/>
-            </div>
-            <div className="new-expense__control">
-                <label>Description</label>
-                <input type='text'
-                value={enteredDescription}
-                onChange={descriptionChangeHandler}/>
-            </div>
-            <div className="new-expense__control">
-                <label>Type</label>
-                <input type='text'
-                value={enteredType}
-                onChange={typeChangeHandler}/>
-            </div>
-            <div className="new-expense__control">
-                <label>Price in €</label>
-                <input type='number' min="0.01" step="0.01"
-                value={enteredPriceEuros}
-                onChange={priceEurosChangeHandler}/>
-            </div>
-            <div className="new-expense__control">
-                <label>Other currency</label>
-                <input type='text'
-                value={enteredCurrency}
-                onChange={currencyChangeHandler}/>
-            </div>
-            <div className="new-expense__control">
-                <label>Price other currency</label>
-                <input type='number' min="0.01" step="0.01"
-                value={enteredPriceOther}
-                onChange={priceOtherChangeHandler}/>
-            </div>
-            
-        </div>
-        <div className="new-expense__actions">
-            <button type='reset'>Reset</button>
-            <button type='submit'>Add Expense</button>
-        </div>
+        {formContent}
     </form>
     )
 };
