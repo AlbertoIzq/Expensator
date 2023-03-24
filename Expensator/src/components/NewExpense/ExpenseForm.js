@@ -10,8 +10,6 @@ const ExpenseForm = (props) => {
     const [enteredCurrency, setEnteredCurrency] = useState("");
     const [enteredPriceOther, setEnteredPriceOther] = useState("");
 
-    const [showFormContent, setShowFormContent] = useState(false)
-
     const dateChangeHandler = (event) => {
         setEnteredDate(event.target.value);
     }
@@ -64,7 +62,7 @@ const ExpenseForm = (props) => {
         reinitializeForm();
 
         // Hide form
-        setShowFormContent(false);
+        props.onCancel();
     }
 
     const resetHandler = (event) => {
@@ -74,17 +72,8 @@ const ExpenseForm = (props) => {
         reinitializeForm();
     }
 
-    const clickCancelHandler = () => {
-        setShowFormContent(false);
-    }
-
-    const clickSubmitHandler = () => {
-        if(!showFormContent) {
-            setShowFormContent(true);
-        }
-    }
-
-    let formContent = (
+    return (
+    <form onSubmit={submitHandler} onReset={resetHandler}>
         <div>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
@@ -126,24 +115,11 @@ const ExpenseForm = (props) => {
                 
             </div>
             <div className="new-expense__actions">
-                <button type='button' onClick={clickCancelHandler}>Cancel</button>
-                <button type='submit' onClick={clickSubmitHandler}>Add Expense</button>
+                <button type='button' onClick={props.onCancel}>Cancel</button>
+                <button type='submit' onClick={submitHandler}>Add expense</button>
                 <button type='reset'>Reset</button>
             </div>
         </div>
-    );
-
-    if(!showFormContent) {
-        formContent = (
-            <div className="new-expense__actions">
-                <button type='submit' onClick={clickSubmitHandler}>Add Expense</button>
-            </div>
-        )
-    }
-
-    return (
-    <form onSubmit={submitHandler} onReset={resetHandler}>
-        {formContent}
     </form>
     )
 };
